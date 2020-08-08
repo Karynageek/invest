@@ -11,7 +11,7 @@ class AdminDepositController extends Admin {
         self::checkAdmin();
         $deposit = Deposit::getDepositsListByUsers($userId);
 
-        require_once(ROOT . '/views/admin/view.php');
+        require_once(ROOT . '/views/admin_deposit/view_deposits.php');
         return true;
     }
 

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <head>
-    <title>Log up</title>
+    <title>Edit user</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 </head>
@@ -47,7 +47,7 @@
                                     <input type="submit" name="submit" value="Registration" class="btn btn-primary col-6 mb-2"/></div>
                             </form>
                             <div class="text-center">
-                                <a href="/login">Go back</a>
+                                <a href="/users">List of users</a>
                             </div>
                         <?php endif; ?>
                     </div>

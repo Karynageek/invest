@@ -8,22 +8,29 @@
 class DepositController {
 
     public function actionCreateDeposit() {
+        $date_finish=false;
+        $status=false;
+        $interest_rate=false;
+        $sum=false;
+        $result = false;
+        
         if (isset($_POST['submit'])) {
-            $options['data_finish'] = $_POST['data_finish'];
-            $options['sum'] = $_POST['sum'];
-            $options['interest_rate'] = $_POST['interest_rate'];
-
-            header("Location: /user/deposit");
+            $date_finish = $_POST['date_finish'];
+            $status = $_POST['status'];
+            $interest_rate = $_POST['interest_rate'];
+            $sum = $_POST['sum'];
+            $result = Deposit::createDeposit($date_finish, $status, $interest_rate, $sum);
+            header("Location: /deposit/view");
         }
 
-        require_once(ROOT . '/views/user/deposit.php');
+        require_once(ROOT . '/views/deposit/create_deposit.php');
         return true;
     }
 
     public function actionViewDeposit() {
-        $product = Deposit::getDepositsList();
+        $deposits = Deposit::getDepositsList();
 
-        require_once(ROOT . '/views/user/view.php');
+        require_once(ROOT . '/views/deposit/view_deposits.php');
         return true;
     }
 

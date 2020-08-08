@@ -68,7 +68,7 @@ class UserController {
             } else {
                 User::auth($userId);
 
-                header("Location: /deposit");
+                header("Location: /deposit/create");
             }
         }
         require_once(ROOT . '/views/user/login.php');

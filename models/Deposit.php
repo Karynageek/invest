@@ -7,14 +7,14 @@
  */
 class Deposit {
 
-    public static function createDeposit($data_finish, $status, $sum, $interest_rate) {
+    public static function createDeposit($date_finish, $status, $sum, $interest_rate) {
         $db = Db::getConnection();
 
-        $query = 'INSERT INTO deposit (data_finish, status, sum, interest_rate) '
-                . 'VALUES (:data_finish, :status, :sum, :interest_rate)';
+        $query = 'INSERT INTO deposit (date_finish, status, interest_rate, sum) '
+                . 'VALUES (:date_finish, :status, :sum, :interest_rate)';
 
         $result = $db->prepare($query);
-        $result->bindParam(':data_finish', $data_finish, PDO::PARAM_STR);
+        $result->bindParam(':date_finish', $date_finish, PDO::PARAM_STR);
         $result->bindParam(':status', $status, PDO::PARAM_INT);
         $result->bindParam(':sum', $sum, PDO::PARAM_INT);
         $result->bindParam(':interest_rate', $interest_rate, PDO::PARAM_INT);
@@ -33,14 +33,14 @@ class Deposit {
 
     public static function getDepositsList() {
         $db = Db::getConnection();
-        $result = $db->query('SELECT id, data_start, data_finish, status, sum, '
-                . 'interest_rate FROM deposit ORDER BY id ASC');
+        $result = $db->query('SELECT id, date_start, date_finish, status, '
+                . 'interest_rate, sum FROM deposit ORDER BY id ASC');
         $depositList = array();
         $i = 0;
         while ($row = $result->fetch()) {
             $depositList[$i]['id'] = $row['id'];
-            $depositList[$i]['data_start'] = $row['data_start'];
-            $depositList[$i]['data_finish'] = $row['data_finish'];
+            $depositList[$i]['date_start'] = $row['date_start'];
+            $depositList[$i]['date_finish'] = $row['date_finish'];
             $depositList[$i]['status'] = $row['status'];
             $depositList[$i]['sum'] = $row['sum'];
             $depositList[$i]['interest_rate'] = $row['interest_rate'];
@@ -53,7 +53,7 @@ class Deposit {
 
         $db = Db::getConnection();
 
-        $query = 'SELECT id, data_start, data_finish, sum, interest_rate FROM deposit '
+        $query = 'SELECT id, date_start, date_finish, sum, interest_rate FROM deposit '
                 . 'WHERE status = 1 AND user_id = :user_id '
                 . 'ORDER BY id ASC';
 
@@ -65,8 +65,8 @@ class Deposit {
         $depositList = array();
         while ($row = $result->fetch()) {
             $depositList[$i]['id'] = $row['id'];
-            $depositList[$i]['data_start'] = $row['data_start'];
-            $depositList[$i]['data_finish'] = $row['data_finish'];
+            $depositList[$i]['date_start'] = $row['date_start'];
+            $depositList[$i]['date_finish'] = $row['date_finish'];
             $depositList[$i]['status'] = $row['status'];
             $depositList[$i]['sum'] = $row['sum'];
             $depositList[$i]['interest_rate'] = $row['interest_rate'];
@@ -76,19 +76,19 @@ class Deposit {
         return $depositList;
     }
 
-    public static function updateDepositById($id, $data_start, $data_finish, $status, $sum, $interest_rate) {
+    public static function updateDepositById($id, $date_start, $date_finish, $status, $sum, $interest_rate) {
         $db = Db::getConnection();
         $query = "UPDATE deposit
-            SET data_start = :data_start, 
-            data_finish=:data_finish, 
+            SET date_start = :date_start, 
+            date_finish=:date_finish, 
             status = :status,
             sum=:sum, 
             interest_rate=:interest_rate 
             WHERE id = :id";
         $result = $db->prepare($query);
         $result->bindParam(':id', $id, PDO::PARAM_STR);
-        $result->bindParam(':data_start', $data_start, PDO::PARAM_STR);
-        $result->bindParam(':data_finish', $data_finish, PDO::PARAM_STR);
+        $result->bindParam(':date_start', $date_start, PDO::PARAM_STR);
+        $result->bindParam(':date_finish', $date_finish, PDO::PARAM_STR);
         $result->bindParam(':status', $status, PDO::PARAM_INT);
         $result->bindParam(':sum', $sum, PDO::PARAM_INT);
         $result->bindParam(':interest_rate', $interest_rate, PDO::PARAM_INT);
@@ -110,6 +110,19 @@ class Deposit {
                 break;
             case '0':
                 return 'Close';
+                break;
+        }
+    }
+        public static function getRate($interest_rate) {
+        switch ($interest_rate) {
+            case '2':
+                return '9';
+                break;
+            case '1':
+                return '7';
+                break;
+            case '0':
+                return '5';
                 break;
         }
     }

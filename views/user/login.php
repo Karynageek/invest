@@ -27,10 +27,10 @@
                                    placeholder="Password" required="" value="<?php echo $password; ?>"/>
 
                             <div class="row justify-content-center">
-                                <input type="submit" value="Sign In" class="btn btn-primary col-6 mb-2"/></div>
+                                <input type="submit" name="submit" value="Sign In" class="btn btn-primary col-6 mb-2"/></div>
                         </form>
                         <div class="text-center">
-                            <a href="/views/registration">Create an account</a>
+                            <a href="/views/register">Create an account</a>
                         </div>
                     </div>
                 </div>
