@@ -1,10 +1,4 @@
-<!DOCTYPE html>
-<head>
-    <title>Edit user</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-</head>
-<body class="container mt-5 mb-5">
+<?php include ROOT . '/views/blocks/header_admin.php'; ?>   
     <div class="container-fluid h-100">
         <div class="row align-items-center h-100">
             <div class="col-sm-12">
@@ -27,11 +21,13 @@
                                 <input type="text" name="name" id="inputName" 
                                        class="form-control mb-2" placeholder="Username" required=""
                                        value="<?php echo $name; ?>">
+                                       
 
                                 <label for="inputPassword" class="sr-only">Password</label>
                                 <input type="password" name="password" id="inputPassword" 
                                        class="form-control mb-2" placeholder="Password" required=""
                                        value="<?php echo $password; ?>">
+                                       
 
                                 <label for="inputEmail" class="sr-only">Email</label>
                                 <input type="email" name="email" id="inputEmail" 
@@ -44,10 +40,10 @@
                                        value="<?php echo $phone; ?>">
 
                                 <div class="row justify-content-center">
-                                    <input type="submit" name="submit" value="Registration" class="btn btn-primary col-6 mb-2"/></div>
+                                    <input type="submit" name="submit" value="Update" class="btn btn-primary col-6 mb-2"/></div>
                             </form>
                             <div class="text-center">
-                                <a href="/users">List of users</a>
+                                <a href="/admin/user/view">Go back</a>
                             </div>
                         <?php endif; ?>
                     </div>
@@ -55,5 +51,4 @@
             </div>
         </div>
     </div>
-</body>
-</html>
+<?php include ROOT . '/views/blocks/footer_admin.php';

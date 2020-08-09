@@ -16,7 +16,7 @@ class User {
         $result = $db->prepare($query);
         $result->bindParam(':name', $name, PDO::PARAM_STR);
         $result->bindParam(':email', $email, PDO::PARAM_STR);
-        $result->bindParam(':phone', $phone, PDO::PARAM_STR);
+        $result->bindParam(':phone', $phone, PDO::PARAM_INT);
         $result->bindParam(':password', $password, PDO::PARAM_STR);
         return $result->execute();
     }
@@ -33,7 +33,7 @@ class User {
 
     public static function getUsersList() {
         $db = Db::getConnection();
-        $result = $db->query('SELECT id, name, email, phone FROM user ORDER BY id ASC');
+        $result = $db->query('SELECT id, name, email, phone, balance, password FROM user ORDER BY id ASC');
         $userList = array();
         $i = 0;
         while ($row = $result->fetch()) {
@@ -41,6 +41,8 @@ class User {
             $userList[$i]['name'] = $row['name'];
             $userList[$i]['email'] = $row['email'];
             $userList[$i]['phone'] = $row['phone'];
+            $userList[$i]['balance'] = $row['balance'];
+            $userList[$i]['password'] = $row['password'];
             $i++;
         }
         return $userList;
@@ -90,7 +92,7 @@ class User {
             return $_SESSION['user'];
         }
 
-        header("Location: /login");
+        header("Location: /user/login");
     }
 
     public static function isGuest() {
@@ -108,7 +110,7 @@ class User {
     }
 
     public static function checkPhone($phone) {
-        if (strlen($phone) >= 7) {
+        if (strlen($phone) >= 4) {
             return true;
         }
         return false;

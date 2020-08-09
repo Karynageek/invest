@@ -3,7 +3,7 @@
         <div class="container">
             <div class="row">
                 <p class="float-left">Copyright © 2020</p>
-                <p class="float-right">InvestBank</p>
+                <p class="float-rigt">InvestBank</p>
             </div>
         </div>
     </div>

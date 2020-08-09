@@ -3,7 +3,7 @@
 <section>
     <div class="container">
         <div class="row">
-            <div class="col-sm-3">
+            <div class="col-sm-4">
                 <div class="left-sidebar">
                     <h2>My Deposits</h2>
                     <table class="table table-striped">

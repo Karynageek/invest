@@ -7,7 +7,6 @@
  */
 class UserController {
 
-
     public function actionRegister() {
         $name = false;
         $email = false;
@@ -34,6 +33,9 @@ class UserController {
             if (User::checkEmailExists($email)) {
                 $errors[] = 'Такой email уже используется';
             }
+            if (!User::checkPhone($phone)) {
+                $errors[] = 'Телефон не должен быть короче 4-х символов';
+            }
             if ($errors == false) {
                 $result = User::createUser($name, $email, $phone, $password);
                 header("Location: /user/login");
@@ -47,6 +49,7 @@ class UserController {
         $email = false;
         $password = false;
         $result = false;
+        $user = false;
 
         if (isset($_POST['submit'])) {
             $email = $_POST['email'];
@@ -59,16 +62,16 @@ class UserController {
             if (!User::checkPassword($password)) {
                 $errors[] = 'Пароль не должен быть короче 6-ти символов';
             }
-            if (User::checkEmailExists($email)) {
-                $errors[] = 'Такой email уже используется';
-            }
             $userId = User::checkUserData($email, $password);
             if ($userId == false) {
                 $errors[] = 'Неправильные данные для входа на сайт';
             } else {
                 User::auth($userId);
-
-                header("Location: /deposit/create");
+               if (Admin::checkAdmin($userId)) {
+                    header("Location: /admin/user/create");
+                } else {
+                    header("Location: /deposit/create");
+                }
             }
         }
         require_once(ROOT . '/views/user/login.php');
@@ -76,9 +79,11 @@ class UserController {
     }
 
     public function actionLogout() {
-        session_start();
+        if (session_id() == '') {
+            session_start();
+        }
         unset($_SESSION["user"]);
-        header("Location: /");
+        header("Location: /user/login");
     }
 
 }

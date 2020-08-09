@@ -5,8 +5,8 @@
             <p>Such opportunities are available to you:</p>
             <br/>
             <ul>
-                <li><a href="/admin/users">Manage users</a></li>
-                <li><a href="/admin/deposits">Manage deposits</a></li>
+                <li><a href="/admin/user/view">Manage users</a></li>
+                <li><a href="/admin/deposit/view">Manage deposits</a></li>
             </ul>
         </div>
     </div>

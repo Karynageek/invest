@@ -13,13 +13,14 @@ class DepositController {
         $interest_rate=false;
         $sum=false;
         $result = false;
+        $userId=$_SESSION['user'];
         
         if (isset($_POST['submit'])) {
             $date_finish = $_POST['date_finish'];
             $status = $_POST['status'];
             $interest_rate = $_POST['interest_rate'];
             $sum = $_POST['sum'];
-            $result = Deposit::createDeposit($date_finish, $status, $interest_rate, $sum);
+            $result = Deposit::createDeposit($date_finish, $status, $interest_rate, $sum, $userId);
             header("Location: /deposit/view");
         }
 

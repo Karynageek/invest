@@ -21,16 +21,16 @@
                             <h1 class="h3 mb-3 font-weight-normal text-center">Log in</h1>
                             <label for="inputLogin" class="sr-only">Enter Username</label>
                             <input type="email" name="email" class="form-control mb-2" 
-                                   placeholder="E-mail" required="" value="<?php echo $email; ?>"/>
+                                   placeholder="E-mail" required=""/>
                             <label for="inputPassword" class="sr-only">Password</label>
                             <input type="password" name="password" class="form-control mb-2" 
-                                   placeholder="Password" required="" value="<?php echo $password; ?>"/>
+                                   placeholder="Password" required=""/>
 
                             <div class="row justify-content-center">
                                 <input type="submit" name="submit" value="Sign In" class="btn btn-primary col-6 mb-2"/></div>
                         </form>
                         <div class="text-center">
-                            <a href="/views/register">Create an account</a>
+                            <a href="/user/register">Create an account</a>
                         </div>
                     </div>
                 </div>

@@ -1,11 +1,11 @@
-<?php include ROOT . '/views/blocks/header.php'; ?>
+<?php include ROOT . '/views/blocks/header_admin.php'; ?>
 
 <section>
     <div class="container">
         <div class="row">
-            <div class="col-sm-3">
+            <div class="col-sm-9">
                 <div class="left-sidebar">
-                    <h2>My Deposits</h2>
+                    <h2>List of deposits</h2>
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -26,6 +26,8 @@
                                     <td><p class="card-title"><?php echo Deposit::getRate($depositItem['interest_rate']); ?></p></td>
                                     <td><p class="card-title"><?php echo $depositItem['sum']; ?></p></td>
                                     <td><p class="card-title"><?php echo $depositItem['user_id']; ?></p></td>
+                                    <td><a href="update/<?php echo $depositItem['id']; ?>" class="btn btn-primary">Edit</a></td>
+                                    <td><a href="delete/<?php echo $depositItem['id']; ?>" class="btn btn-danger">Delete</a></td>
                                 </tr>
                             <?php endforeach; ?>
                         </tbody>
@@ -34,4 +36,4 @@
             </div>
         </div>
     </div>
-    <?php include ROOT . '/views/blocks/footer.php'; ?>
+    <?php include ROOT . '/views/blocks/footer_admin.php'; ?>

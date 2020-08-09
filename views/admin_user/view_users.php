@@ -1,26 +1,39 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <title>List of Users</title>
-    </head>
-    <body>
-        <h2>List of Users</h2>
-        <table border="1">
-            <tr>
-                <th>Id: <?php echo $user['id']; ?></th> 
-                <th>User Name: <?php echo $user['name']; ?></th> 
-                <th>E-mail: <?php echo $user['email']; ?></th> 
-                <th>Phone: <?php echo $user['phone']; ?> </th> 
-                <th colspan="2">Operations</th>
-            </tr>
-            <td >
-                <a href="/students/edit/id">Edit</a>
-            </td>
-            <td>
-                <a href="/students/delete/id">Delete</a>
-            </td>
-        </tr>
-    </table>
-</body>
-</html>
+<?php include ROOT . '/views/blocks/header_admin.php'; ?>
+
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="left-sidebar">
+                    <h2>List of users</h2>
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Phone</th>
+                                <th scope="col">Balance</th>
+                                <th scope="col">Password</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php foreach ($users as $userList): ?>
+                                <tr>
+                                    <td><p class="card-title"><?php echo $userList['id']; ?></p></td>
+                                    <td><p class="card-title"><?php echo $userList['name']; ?></p></td>
+                                    <td><p class="card-title"><?php echo $userList['email']; ?></p></td>
+                                    <td><p class="card-title"><?php echo $userList['phone']; ?></p></td>
+                                    <td><p class="card-title"><?php echo $userList['balance']; ?></p></td>
+                                    <td><p class="card-title"><?php echo $userList['password']; ?></p></td>
+                                    <td><a href="update/<?php echo $userList['id']; ?>" class="btn btn-primary">Edit</a></td>
+                                    <td><a href="delete/<?php echo $userList['id']; ?>" class="btn btn-danger">Delete</a></td>
+                                </tr>
+                            <?php endforeach; ?>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <?php include ROOT . '/views/blocks/footer_admin.php'; ?>

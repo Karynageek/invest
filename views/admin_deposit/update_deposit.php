@@ -1,33 +1,20 @@
-<?php include ROOT . '/views/layouts/header_admin.php'; ?>
+<?php include ROOT . '/views/blocks/header_admin.php'; ?>
 
 <section>
     <div class="container">
         <div class="row">
-
             <br/>
-
-            <div class="breadcrumbs">
-                <ol class="breadcrumb">
-                    <li><a href="/admin">Adminpanel</a></li>
-                    <li><a href="/admin/deposit">Manage deposits</a></li>
-                    <li class="active">Edit deposit</li>
-                </ol>
-            </div>
-
-
-            <h4>Edit deposit #<?php echo $id; ?></h4>
-
+            <h4>Edit deposit #<?php echo $deposit['id']; ?></h4>
             <br/>
-
             <div class="col-lg-4">
                 <div class="login-form">
                     <form action="#" method="post" enctype="multipart/form-data">
 
-                        <p>Data start</p>
-                        <input type="text" name="data_start" placeholder="" value="<?php echo $deposit['data_start']; ?>">
+                        <p>Date start</p>
+                        <input type="text" name="date_start" placeholder="" value="<?php echo $deposit['date_start']; ?>">
 
-                        <p>Data finish</p>
-                        <input type="text" name="data_finish" placeholder="" value="<?php echo $deposit['data_finish']; ?>">
+                        <p>Date finish</p>
+                        <input type="text" name="date_finish" placeholder="" value="<?php echo $deposit['date_finish']; ?>">
 
                         <p>Sum deposit</p>
                         <input type="text" name="sum" placeholder="" value="<?php echo $deposit['sum']; ?>">
@@ -47,7 +34,7 @@
 
                         <br/><br/>
 
-                        <input type="submit" name="submit" class="btn btn-default" value="Save">
+                        <input type="submit" name="submit" class="btn btn-primary" value="Save">
 
                         <br/><br/>
 
@@ -59,4 +46,5 @@
     </div>
 </section>
 
-<?php include ROOT . '/views/layouts/footer_admin.php';
+<?php
+include ROOT . '/views/blocks/footer_admin.php';

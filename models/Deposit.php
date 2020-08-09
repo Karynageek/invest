@@ -7,17 +7,18 @@
  */
 class Deposit {
 
-    public static function createDeposit($date_finish, $status, $sum, $interest_rate) {
+    public static function createDeposit($date_finish, $status, $sum, $interest_rate, $user_id) {
         $db = Db::getConnection();
 
-        $query = 'INSERT INTO deposit (date_finish, status, interest_rate, sum) '
-                . 'VALUES (:date_finish, :status, :sum, :interest_rate)';
+        $query = 'INSERT INTO deposit (date_finish, status, interest_rate, sum, user_id) '
+                . 'VALUES (:date_finish, :status, :sum, :interest_rate, user_id)';
 
         $result = $db->prepare($query);
         $result->bindParam(':date_finish', $date_finish, PDO::PARAM_STR);
         $result->bindParam(':status', $status, PDO::PARAM_INT);
         $result->bindParam(':sum', $sum, PDO::PARAM_INT);
         $result->bindParam(':interest_rate', $interest_rate, PDO::PARAM_INT);
+        $result->bindParam(':user_id', $user_id, PDO::PARAM_INT);
         return $result->execute();
     }
 
@@ -34,7 +35,7 @@ class Deposit {
     public static function getDepositsList() {
         $db = Db::getConnection();
         $result = $db->query('SELECT id, date_start, date_finish, status, '
-                . 'interest_rate, sum FROM deposit ORDER BY id ASC');
+                . 'interest_rate, sum, user_id FROM deposit ORDER BY id ASC');
         $depositList = array();
         $i = 0;
         while ($row = $result->fetch()) {
@@ -44,6 +45,7 @@ class Deposit {
             $depositList[$i]['status'] = $row['status'];
             $depositList[$i]['sum'] = $row['sum'];
             $depositList[$i]['interest_rate'] = $row['interest_rate'];
+            $depositList[$i]['user_id'] = $row['user_id'];
             $i++;
         }
         return $depositList;

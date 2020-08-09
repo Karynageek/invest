@@ -25,29 +25,27 @@
                                 <h1 class="h3 mb-3 font-weight-normal text-center">Log up</h1>
                                 <label for="inputName" class="sr-only">Username</label>
                                 <input type="text" name="name" id="inputName" 
-                                       class="form-control mb-2" placeholder="Username" required=""
-                                       value="<?php echo $name; ?>">
+                                       class="form-control mb-2" placeholder="Username" required="">
+                                       
 
                                 <label for="inputPassword" class="sr-only">Password</label>
                                 <input type="password" name="password" id="inputPassword" 
-                                       class="form-control mb-2" placeholder="Password" required=""
-                                       value="<?php echo $password; ?>">
+                                       class="form-control mb-2" placeholder="Password" required="">
+                                       
 
                                 <label for="inputEmail" class="sr-only">Email</label>
                                 <input type="email" name="email" id="inputEmail" 
-                                       class="form-control mb-2" placeholder="Email" required=""
-                                       value="<?php echo $email; ?>">
+                                       class="form-control mb-2" placeholder="Email" required="">
 
                                 <label for="inputPhone" class="sr-only">Phone</label>
                                 <input type="text" name="phone" id="inputPhone" 
-                                       class="form-control mb-2" placeholder="Phone" required=""
-                                       value="<?php echo $phone; ?>">
+                                       class="form-control mb-2" placeholder="Phone" required="">
 
                                 <div class="row justify-content-center">
                                     <input type="submit" name="submit" value="Registration" class="btn btn-primary col-6 mb-2"/></div>
                             </form>
                             <div class="text-center">
-                                <a href="/login">Go back</a>
+                                <a href="/user/login">Go back</a>
                             </div>
                         <?php endif; ?>
                     </div>
