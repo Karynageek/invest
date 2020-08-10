@@ -13,8 +13,7 @@ class DepositController {
         $interest_rate=false;
         $sum=false;
         $result = false;
-        $userId=$_SESSION['user'];
-        
+
         if (isset($_POST['submit'])) {
             $date_finish = $_POST['date_finish'];
             $status = $_POST['status'];

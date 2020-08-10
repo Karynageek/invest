@@ -6,14 +6,16 @@
             <file>file:/C:/OSPanel/domains/invest/controllers/DepositController.php</file>
             <file>file:/C:/OSPanel/domains/invest/config/routes.php</file>
             <file>file:/C:/OSPanel/domains/invest/models/User.php</file>
-            <file>file:/C:/OSPanel/domains/invest/views/deposit/create_deposit.php</file>
-            <file>file:/C:/OSPanel/domains/invest/views/admin/index.php</file>
-            <file>file:/C:/OSPanel/domains/invest/views/blocks/header_admin.php</file>
             <file>file:/C:/OSPanel/domains/invest/controllers/UserController.php</file>
-            <file>file:/C:/OSPanel/domains/invest/controllers/AdminUserController.php</file>
+            <file>file:/C:/OSPanel/domains/invest/views/admin_user/update_user.php</file>
+            <file>file:/C:/OSPanel/domains/invest/controllers/AdminController.php</file>
+            <file>file:/C:/OSPanel/domains/invest/views/admin_user/create_user.php</file>
+            <file>file:/C:/OSPanel/domains/invest/components/Router.php</file>
+            <file>file:/C:/OSPanel/domains/invest/views/admin_deposit/update_deposit.php</file>
+            <file>file:/C:/OSPanel/domains/invest/components/Admin.php</file>
+            <file>file:/C:/OSPanel/domains/invest/views/deposit/create_deposit.php</file>
+            <file>file:/C:/OSPanel/domains/invest/models/Deposit.php</file>
             <file>file:/C:/OSPanel/domains/invest/views/user/register.php</file>
-            <file>file:/C:/OSPanel/domains/invest/views/user/login.php</file>
-            <file>file:/C:/OSPanel/domains/invest/controllers/AdminDepositController.php</file>
         </group>
     </open-files>
 </project-private>

@@ -48,16 +48,17 @@ class User {
         return $userList;
     }
 
-    public static function updateUserById($id, $name, $phone, $password) {
+    public static function updateUserById($id, $name, $phone, $password, $balance) {
         $db = Db::getConnection();
         $query = "UPDATE user 
-            SET name = :name, phone=:phone, password = :password 
+            SET name = :name, phone=:phone, password = :password, balance=:balance 
             WHERE id = :id";
         $result = $db->prepare($query);
         $result->bindParam(':id', $id, PDO::PARAM_INT);
         $result->bindParam(':name', $name, PDO::PARAM_STR);
         $result->bindParam(':phone', $phone, PDO::PARAM_STR);
         $result->bindParam(':password', $password, PDO::PARAM_STR);
+        $result->bindParam(':balance', $balance, PDO::PARAM_INT);
         return $result->execute();
     }
 
@@ -118,6 +119,13 @@ class User {
 
     public static function checkPassword($password) {
         if (strlen($password) >= 6) {
+            return true;
+        }
+        return false;
+    }
+
+    public static function checkBalance($balance) {
+        if (strlen($balance) <= 12 && $balance >= 0) {
             return true;
         }
         return false;

@@ -67,7 +67,10 @@ class UserController {
                 $errors[] = 'Неправильные данные для входа на сайт';
             } else {
                 User::auth($userId);
-               if (Admin::checkAdmin($userId)) {
+
+                $user = User::getUserById($userId);
+
+                if ($user['role'] === 'admin') {
                     header("Location: /admin/user/create");
                 } else {
                     header("Location: /deposit/create");

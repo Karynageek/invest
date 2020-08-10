@@ -62,15 +62,17 @@ class AdminController extends Admin {
         $email = false;
         $phone = false;
         $password = false;
-        $result = false;
+        $balance = false;
 
         if (isset($_POST['submit'])) {
             $name = $_POST['name'];
             $email = $_POST['email'];
             $phone = $_POST['phone'];
             $password = $_POST['password'];
+            $balance = $_POST['balance'];
 
             $errors = false;
+
             if (!User::checkName($name)) {
                 $errors[] = 'Имя не должно быть короче 2-х символов';
             }
@@ -80,8 +82,11 @@ class AdminController extends Admin {
             if (!User::checkPassword($password)) {
                 $errors[] = 'Пароль не должен быть короче 6-ти символов';
             }
+            if (!User::checkBalance($balance)) {
+                $errors[] = 'Баланс не должен быть больше 12-ти символов и не может быть отрицательным';
+            }
             if ($errors == false) {
-                $result = User::updateUserById($id, $name, $email, $phone, $password);
+                $user = User::updateUserById($id, $name, $email, $phone, $password, $balance);
                 header("Location: /admin/user/view");
             }
         }
