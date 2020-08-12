@@ -48,17 +48,18 @@ class User {
         return $userList;
     }
 
-    public static function updateUserById($id, $name, $phone, $password, $balance) {
+    public static function updateUserById($id, $name, $email, $phone, $balance, $password) {
         $db = Db::getConnection();
         $query = "UPDATE user 
-            SET name = :name, phone=:phone, password = :password, balance=:balance 
+            SET name = :name, email=:email, phone=:phone, balance=:balance, password = :password
             WHERE id = :id";
         $result = $db->prepare($query);
         $result->bindParam(':id', $id, PDO::PARAM_INT);
         $result->bindParam(':name', $name, PDO::PARAM_STR);
+        $result->bindParam(':email', $email, PDO::PARAM_STR);
         $result->bindParam(':phone', $phone, PDO::PARAM_STR);
-        $result->bindParam(':password', $password, PDO::PARAM_STR);
         $result->bindParam(':balance', $balance, PDO::PARAM_INT);
+        $result->bindParam(':password', $password, PDO::PARAM_STR);
         return $result->execute();
     }
 
@@ -145,6 +146,21 @@ class User {
 
         $result = $db->prepare($query);
         $result->bindParam(':email', $email, PDO::PARAM_STR);
+        $result->execute();
+
+        if ($result->fetchColumn()) {
+            return true;
+        }
+        return false;
+    }
+
+    public static function getRole($id) {
+        $db = Db::getConnection();
+
+        $query = 'SELECT role FROM user WHERE id = :id';
+
+        $result = $db->prepare($query);
+        $result->bindParam(':id', $id, PDO::PARAM_INT);
         $result->execute();
 
         if ($result->fetchColumn()) {

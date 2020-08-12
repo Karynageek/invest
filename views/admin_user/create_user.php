@@ -16,7 +16,7 @@
                             <?php endif; ?>
                             <form action="#" method="post" class="form-signin">
 
-                                <h1 class="h3 mb-3 font-weight-normal text-center">Log up</h1>
+                                <h1 class="h3 mb-3 font-weight-normal text-center">Create user</h1>
                                 <label for="inputName" class="sr-only">Username</label>
                                 <input type="text" name="name" id="inputName" 
                                        class="form-control mb-2" placeholder="Username" required="">
@@ -36,7 +36,7 @@
                                        class="form-control mb-2" placeholder="Phone" required="">
 
                                 <div class="row justify-content-center">
-                                    <input type="submit" name="submit" value="Registration" class="btn btn-primary col-6 mb-2"/></div>
+                                    <input type="submit" name="submit" value="Save" class="btn btn-primary col-6 mb-2"/></div>
                             </form>
                             <div class="text-center">
                                 <a href="/admin/user/view">Go back</a>

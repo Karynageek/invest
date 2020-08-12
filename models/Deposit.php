@@ -7,18 +7,17 @@
  */
 class Deposit {
 
-    public static function createDeposit($date_finish, $status, $sum, $interest_rate, $user_id) {
+    public static function createDeposit($date_finish, $status, $interest_rate, $user_id, $sum) {
         $db = Db::getConnection();
-
-        $query = 'INSERT INTO deposit (date_finish, status, interest_rate, sum, user_id) '
-                . 'VALUES (:date_finish, :status, :sum, :interest_rate, user_id)';
+        $query = 'INSERT INTO deposit (date_finish, status, interest_rate, user_id, sum) '
+                . 'VALUES (:date_finish, :status, :interest_rate, :user_id, :sum)';
 
         $result = $db->prepare($query);
         $result->bindParam(':date_finish', $date_finish, PDO::PARAM_STR);
         $result->bindParam(':status', $status, PDO::PARAM_INT);
-        $result->bindParam(':sum', $sum, PDO::PARAM_INT);
         $result->bindParam(':interest_rate', $interest_rate, PDO::PARAM_INT);
         $result->bindParam(':user_id', $user_id, PDO::PARAM_INT);
+        $result->bindParam(':sum', $sum, PDO::PARAM_INT);
         return $result->execute();
     }
 
@@ -115,7 +114,8 @@ class Deposit {
                 break;
         }
     }
-        public static function getRate($interest_rate) {
+
+    public static function getRate($interest_rate) {
         switch ($interest_rate) {
             case '2':
                 return '9';
@@ -127,6 +127,13 @@ class Deposit {
                 return '5';
                 break;
         }
+    }
+
+    public static function checkSum($sum) {
+        if (strlen($sum) <= 12 && $sum >= 0) {
+            return true;
+        }
+        return false;
     }
 
 }

@@ -13,13 +13,17 @@
                         <?php if ($result): ?>
                             <p>Вы зарегистрированы!</p>
                         <?php else: ?>
+                            <div class="alert alert-danger" role="alert">
                             <?php if (isset($errors) && is_array($errors)): ?>
+                            
                                 <ul>
                                     <?php foreach ($errors as $error): ?>
-                                        <li> - <?php echo $error; ?></li>
+                                        <li><?php echo $error; ?></li>
                                     <?php endforeach; ?>
                                 </ul>
+                                
                             <?php endif; ?>
+                                </div>
                             <form action="#" method="post" class="form-signin">
 
                                 <h1 class="h3 mb-3 font-weight-normal text-center">Log up</h1>

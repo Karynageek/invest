@@ -4,8 +4,17 @@
         <div class="col-sm-12">
             <div class="row justify-content-center">
                 <div class="col-4">
-                    <form action="#" method="post" class="form-signin">
+                    <?php if (isset($errors) && is_array($errors)): ?>
+                        <div class="alert alert-danger" role="alert">
+                            <?php foreach ($errors as $error): ?>
 
+                                <ul>
+                                    <li><?php echo $error; ?></li>
+                                </ul>
+                            <?php endforeach; ?>
+                        </div>
+                    <?php endif; ?>
+                    <form action="#" method="post" class="form-signin">
                         <h1 class="h3 mb-3 font-weight-normal text-center">Edit user# <?php echo $user['id']; ?></h1>
                         <h5>Name:</h5>
                         <input type="text" name="name" id="inputName" 

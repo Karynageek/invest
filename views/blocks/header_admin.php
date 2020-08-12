@@ -15,7 +15,7 @@
             <nav class="my-2 my-md-0 mr-md-3">
                 <a class="p-2 text-dark" href="/admin/deposit/view">List of Deposits</a>
                 <a class="p-2 text-dark" href="/admin/user/view">List of Users</a>
-                <a href="/user/logout"><i class="fa fa-unlock"></i> LogOut</a>
+                <a class="p-2 text-dark" href="/user/logout"><i class="fa fa-unlock"></i>Logout</a>
             </nav>
             
         </div>

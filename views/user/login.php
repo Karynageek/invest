@@ -10,13 +10,18 @@
             <div class="col-sm-12">
                 <div class="row justify-content-center">
                     <div class="col-4">
+
                         <?php if (isset($errors) && is_array($errors)): ?>
-                            <ul>
+                            <div class="alert alert-danger" role="alert">
                                 <?php foreach ($errors as $error): ?>
-                                    <li> - <?php echo $error; ?></li>
+
+                                    <ul>
+                                        <li><?php echo $error; ?></li>
+                                    </ul>
                                 <?php endforeach; ?>
-                            </ul>
+                            </div>
                         <?php endif; ?>
+
                         <form action="#" method="post">
                             <h1 class="h3 mb-3 font-weight-normal text-center">Log in</h1>
                             <label for="inputLogin" class="sr-only">Enter Username</label>

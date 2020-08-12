@@ -61,16 +61,15 @@ class AdminController extends Admin {
         $name = false;
         $email = false;
         $phone = false;
-        $password = false;
         $balance = false;
+        $password = false;
 
         if (isset($_POST['submit'])) {
             $name = $_POST['name'];
             $email = $_POST['email'];
             $phone = $_POST['phone'];
-            $password = $_POST['password'];
             $balance = $_POST['balance'];
-
+            $password = $_POST['password'];
             $errors = false;
 
             if (!User::checkName($name)) {
@@ -79,14 +78,14 @@ class AdminController extends Admin {
             if (!User::checkEmail($email)) {
                 $errors[] = 'Неправильный email';
             }
-            if (!User::checkPassword($password)) {
-                $errors[] = 'Пароль не должен быть короче 6-ти символов';
-            }
             if (!User::checkBalance($balance)) {
                 $errors[] = 'Баланс не должен быть больше 12-ти символов и не может быть отрицательным';
             }
+            if (!User::checkPassword($password)) {
+                $errors[] = 'Пароль не должен быть короче 6-ти символов';
+            }
             if ($errors == false) {
-                $user = User::updateUserById($id, $name, $email, $phone, $password, $balance);
+                $user = User::updateUserById($id, $name, $email, $phone, $balance, $password);
                 header("Location: /admin/user/view");
             }
         }
@@ -123,9 +122,15 @@ class AdminController extends Admin {
             $status = $_POST['status'];
             $sum = $_POST['sum'];
             $interest_rate = $_POST['interest_rate'];
-            $deposit = Deposit::updateDepositById($depositId, $date_start, $date_finish,
-                            $status, $sum, $interest_rate);
-            header("Location: /admin/deposit/view");
+            $errors = false;
+            if (!Deposit::checkSum($sum)) {
+                $errors[] = 'Сумма депозита не может быть отрицательной и быть больше 12 символов';
+            }
+            if ($errors == false) {
+                $deposit = Deposit::updateDepositById($depositId, $date_start, $date_finish,
+                                $status, $sum, $interest_rate);
+                header("Location: /admin/deposit/view");
+            }
         }
 
         require_once(ROOT . '/views/admin_deposit/update_deposit.php');
