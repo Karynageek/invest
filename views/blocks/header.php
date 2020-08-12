@@ -20,5 +20,5 @@
                     <a class="p-2 text-dark" href="/deposit/view">List of deposits</a>
                     <a class="p-2 text-dark" href="/user/logout"><i class="fa fa-unlock"></i>Logout</a>
                 </nav>
-            <?php endif; ?>
+<?php endif; ?>
         </div>

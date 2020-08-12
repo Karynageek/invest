@@ -10,20 +10,16 @@
             <div class="col-sm-12">
                 <div class="row justify-content-center">
                     <div class="col-4">
-                        <?php if ($result): ?>
-                            <p>Вы зарегистрированы!</p>
-                        <?php else: ?>
+                        <?php if (isset($errors) && is_array($errors)): ?>
                             <div class="alert alert-danger" role="alert">
-                            <?php if (isset($errors) && is_array($errors)): ?>
-                            
-                                <ul>
-                                    <?php foreach ($errors as $error): ?>
+                                <?php foreach ($errors as $error): ?>
+
+                                    <ul>
                                         <li><?php echo $error; ?></li>
-                                    <?php endforeach; ?>
-                                </ul>
-                                
-                            <?php endif; ?>
-                                </div>
+                                    </ul>
+                                <?php endforeach; ?>
+                            </div>
+                        <?php endif; ?>
                             <form action="#" method="post" class="form-signin">
 
                                 <h1 class="h3 mb-3 font-weight-normal text-center">Log up</h1>
@@ -51,7 +47,6 @@
                             <div class="text-center">
                                 <a href="/user/login">Go back</a>
                             </div>
-                        <?php endif; ?>
                     </div>
                 </div>
             </div>

@@ -19,6 +19,7 @@ class UserController {
             $email = $_POST['email'];
             $phone = $_POST['phone'];
             $password = $_POST['password'];
+            $pwd_hashed = password_hash($password, PASSWORD_DEFAULT);
 
             $errors = false;
             if (!User::checkName($name)) {
@@ -37,7 +38,7 @@ class UserController {
                 $errors[] = 'Телефон не должен быть короче 4-х символов';
             }
             if ($errors == false) {
-                $result = User::createUser($name, $email, $phone, $password);
+                $result = User::createUser($name, $email, $phone, $pwd_hashed);
                 header("Location: /user/login");
             }
         }
@@ -67,7 +68,7 @@ class UserController {
                 $errors[] = 'Неправильные данные для входа на сайт';
             } else {
                 User::auth($userId);
-                if (User::getRole($userId)==='admin') {
+                if (User::getRole($userId) == 'admin') {
                     header("Location: /admin/deposit/view");
                 } else {
                     header("Location: /deposit/view");

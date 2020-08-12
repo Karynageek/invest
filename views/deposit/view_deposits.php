@@ -3,7 +3,6 @@
 <section>
     <div class="container">
         <div class="row">
-            <div class="col-sm-4">
                 <div class="left-sidebar">
                     <h2>My Deposits</h2>
                     <table class="table table-striped">
@@ -31,5 +30,4 @@
                 </div>
             </div>
         </div>
-    </div>
     <?php include ROOT . '/views/blocks/footer.php'; ?>

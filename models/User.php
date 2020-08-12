@@ -73,9 +73,9 @@ class User {
 
     public static function checkUserData($email, $password) {
         $db = Db::getConnection();
-        $query = 'SELECT * FROM user WHERE email = :email AND password = :password';
+        $query = 'SELECT id FROM user WHERE email = :email AND password = :password';
         $result = $db->prepare($query);
-        $result->bindParam(':email', $email, PDO::PARAM_INT);
+        $result->bindParam(':email', $email, PDO::PARAM_STR);
         $result->bindParam(':password', $password, PDO::PARAM_INT);
         $result->execute();
 

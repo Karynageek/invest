@@ -8,10 +8,10 @@
 class DepositController {
 
     public function actionCreateDeposit() {
-        $date_finish=false;
-        $status=false;
-        $interest_rate=false;
-        $sum=false;
+        $date_finish = false;
+        $status = false;
+        $interest_rate = false;
+        $sum = false;
         $result = false;
         $userId = null;
         if (isset($_POST['submit'])) {
@@ -20,8 +20,14 @@ class DepositController {
             $interest_rate = $_POST['interest_rate'];
             $sum = $_POST['sum'];
             $userId = $_SESSION['user'];
-            $result = Deposit::createDeposit($date_finish, $status, $interest_rate, $userId, $sum);
-            header("Location: /deposit/view");
+            $errors = false;
+            if (!Deposit::checkSum($sum)) {
+                $errors[] = 'Сумма депозита не может быть отрицательной и быть больше 12 символов';
+            }
+            if ($errors == false) {
+                $result = Deposit::createDeposit($date_finish, $status, $interest_rate, $userId, $sum);
+                header("Location: /deposit/view");
+            }
         }
 
         require_once(ROOT . '/views/deposit/create_deposit.php');
@@ -29,7 +35,8 @@ class DepositController {
     }
 
     public function actionViewDeposit() {
-        $deposits = Deposit::getDepositsList();
+        $userId = $_SESSION['user'];
+        $deposits = Deposit::getDepositsListByUsers($userId);
 
         require_once(ROOT . '/views/deposit/view_deposits.php');
         return true;

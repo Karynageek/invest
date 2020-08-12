@@ -124,7 +124,7 @@ class AdminController extends Admin {
             $interest_rate = $_POST['interest_rate'];
             $errors = false;
             if (!Deposit::checkSum($sum)) {
-                $errors[] = 'Сумма депозита не может быть отрицательной и быть больше 12 символов';
+                $errors[] = 'Сумма депозита не может быть меньше $100 и быть больше 12 символов';
             }
             if ($errors == false) {
                 $deposit = Deposit::updateDepositById($depositId, $date_start, $date_finish,

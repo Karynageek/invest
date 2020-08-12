@@ -68,10 +68,8 @@ class Deposit {
             $depositList[$i]['id'] = $row['id'];
             $depositList[$i]['date_start'] = $row['date_start'];
             $depositList[$i]['date_finish'] = $row['date_finish'];
-            $depositList[$i]['status'] = $row['status'];
             $depositList[$i]['sum'] = $row['sum'];
             $depositList[$i]['interest_rate'] = $row['interest_rate'];
-            $depositList[$i]['user_id'] = $row['user_id'];
             $i++;
         }
         return $depositList;
@@ -130,7 +128,7 @@ class Deposit {
     }
 
     public static function checkSum($sum) {
-        if (strlen($sum) <= 12 && $sum >= 0) {
+        if (strlen($sum) <= 12 && $sum >= 100) {
             return true;
         }
         return false;

@@ -3,7 +3,6 @@
 <section>
     <div class="container">
         <div class="row">
-            <div class="col-sm-4">
                 <div class="left-sidebar">
                     <h2>List of users</h2>
                     <a href="create/" class="btn btn-success">Create new user</a>
@@ -38,5 +37,4 @@
                 </div>
             </div>
         </div>
-    </div>
     <?php include ROOT . '/views/blocks/footer_admin.php'; ?>
