@@ -4,20 +4,11 @@
  * Класс Router
  * Компонент для работы с маршрутами
  */
-class Router
-{
+class Router {
 
-    /**
-     * Свойство для хранения массива роутов
-     * @var array 
-     */
     private $routes;
 
-    /**
-     * Конструктор
-     */
-    public function __construct()
-    {
+    public function __construct() {
         // Путь к файлу с роутами
         $routesPath = ROOT . '/config/routes.php';
 
@@ -28,8 +19,7 @@ class Router
     /**
      * Возвращает строку запроса
      */
-    private function getURI()
-    {
+    private function getURI() {
         if (!empty($_SERVER['REQUEST_URI'])) {
             return trim($_SERVER['REQUEST_URI'], '/');
         }
@@ -38,8 +28,7 @@ class Router
     /**
      * Метод для обработки запроса
      */
-    public function run()
-    {
+    public function run() {
         // Получаем строку запроса
         $uri = $this->getURI();
 
@@ -47,6 +36,10 @@ class Router
         foreach ($this->routes as $uriPattern => $path) {
 
             // Сравниваем $uriPattern и $uri
+//            var_dump($uriPattern);
+//            var_dump($path);
+//            var_dump($uri);
+            $internalRoute = preg_replace("~$uriPattern~", $path, $uri);
             if (preg_match("~$uriPattern~", $uri)) {
 
                 // Получаем внутренний путь из внешнего согласно правилу.
@@ -82,6 +75,8 @@ class Router
                 // Если метод контроллера успешно вызван, завершаем работу роутера
                 if ($result != null) {
                     break;
+                } else {
+                    require_once(ROOT . '/views/errors/404.php');
                 }
             }
         }

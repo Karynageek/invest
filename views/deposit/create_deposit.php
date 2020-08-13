@@ -1,5 +1,4 @@
 <?php include ROOT . '/views/blocks/header.php'; ?>
-
 <section>
     <div class="container">
         <div class="row">
@@ -12,7 +11,6 @@
                 <?php if (isset($errors) && is_array($errors)): ?>
                     <div class="alert alert-danger" role="alert">
                         <?php foreach ($errors as $error): ?>
-
                             <ul>
                                 <li><?php echo $error; ?></li>
                             </ul>
@@ -22,8 +20,7 @@
                 <form action="#" method="post" enctype="multipart/form-data">
 
                     <p>Date finish</p>
-                    <input type="date" name="date_finish">
-
+                    <input type="date" name="date_finish" required="">
                     <br/><br/>
 
                     <p>Status</p>
@@ -31,7 +28,6 @@
                         <option value="1" selected="selected">Open</option>
                         <option value="0">Close</option>
                     </select>
-
                     <br/><br/>
 
                     <p>Interest rate</p>
@@ -40,24 +36,17 @@
                         <option value="1">7</option>
                         <option value="0">5</option>
                     </select>
-
                     <br/><br/>
 
                     <p>Sum deposit</p>
-                    <input type="number" name="sum" placeholder="Sum deposit" value="">
+                    <input type="number" name="sum" placeholder="Sum deposit" required="">
                     <br/><br/>
 
                     <input type="submit" name="submit" class="btn btn-primary" value="Save">
-
                     <br/><br/>
-
                 </form>
             </div>
         </div>
-
     </div>
-
 </section>
-
-<?php
-include ROOT . '/views/blocks/footer.php';
+<?php include ROOT . '/views/blocks/footer.php';

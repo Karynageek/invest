@@ -1,5 +1,4 @@
 <?php include ROOT . '/views/blocks/header.php'; ?>
-
 <section>
     <div class="container">
         <div class="row">
@@ -30,4 +29,4 @@
                 </div>
             </div>
         </div>
-    <?php include ROOT . '/views/blocks/footer.php'; ?>
+    <?php include ROOT . '/views/blocks/footer.php';

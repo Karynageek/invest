@@ -14,8 +14,10 @@ class Admin {
 
         if ($user['role'] == 'admin') {
             return true;
+        } else {
+            require_once(ROOT . '/views/errors/403.php');
+            die();
         }
-        die('Access denied');
     }
 
 }

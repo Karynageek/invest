@@ -33,7 +33,7 @@ class User {
 
     public static function getUsersList() {
         $db = Db::getConnection();
-        $result = $db->query('SELECT id, name, email, phone, balance, password FROM user ORDER BY id ASC');
+        $result = $db->query('SELECT id, name, email, phone, password FROM user ORDER BY id ASC');
         $userList = array();
         $i = 0;
         while ($row = $result->fetch()) {
@@ -41,24 +41,22 @@ class User {
             $userList[$i]['name'] = $row['name'];
             $userList[$i]['email'] = $row['email'];
             $userList[$i]['phone'] = $row['phone'];
-            $userList[$i]['balance'] = $row['balance'];
             $userList[$i]['password'] = $row['password'];
             $i++;
         }
         return $userList;
     }
 
-    public static function updateUserById($id, $name, $email, $phone, $balance, $password) {
+    public static function updateUserById($id, $name, $email, $phone, $password) {
         $db = Db::getConnection();
         $query = "UPDATE user 
-            SET name = :name, email=:email, phone=:phone, balance=:balance, password = :password
+            SET name = :name, email=:email, phone=:phone, password = :password
             WHERE id = :id";
         $result = $db->prepare($query);
         $result->bindParam(':id', $id, PDO::PARAM_INT);
         $result->bindParam(':name', $name, PDO::PARAM_STR);
         $result->bindParam(':email', $email, PDO::PARAM_STR);
         $result->bindParam(':phone', $phone, PDO::PARAM_STR);
-        $result->bindParam(':balance', $balance, PDO::PARAM_INT);
         $result->bindParam(':password', $password, PDO::PARAM_STR);
         return $result->execute();
     }
@@ -78,13 +76,25 @@ class User {
         $result->bindParam(':email', $email, PDO::PARAM_STR);
         $result->bindParam(':password', $password, PDO::PARAM_INT);
         $result->execute();
-
         $user = $result->fetch();
         if ($user) {
             return $user['id'];
         }return false;
     }
 
+//    public static function getCheckPassword($email, $password) {
+//        $db = Db::getConnection();
+//        $query = 'SELECT password FROM user WHERE email = :email';
+//        $result = $db->prepare($query);
+//        $result->bindParam(':email', $email, PDO::PARAM_STR);
+//        $result->execute();
+//
+//        $user = $result->fetch();
+//        if (password_verify($password, $user['password']))
+//            return true;
+//        }return false;
+//    }
+    
     public static function auth($userId) {
         $_SESSION['user'] = $userId;
     }
@@ -120,13 +130,6 @@ class User {
 
     public static function checkPassword($password) {
         if (strlen($password) >= 6) {
-            return true;
-        }
-        return false;
-    }
-
-    public static function checkBalance($balance) {
-        if (strlen($balance) <= 12 && $balance >= 0) {
             return true;
         }
         return false;

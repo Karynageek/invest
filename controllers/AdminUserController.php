@@ -1,13 +1,23 @@
 <?php
 
 /**
- * Description of UsertController
+ * Description of AdminUserController
  *
  * @author Karina
  */
-class UserController {
+class AdminUserController extends Admin {
 
-    public function actionRegister() {
+    public function actionViewUserByAdmin() {
+        self::checkAdmin();
+
+        $users = User::getUsersList();
+
+        require_once(ROOT . '/views/admin_user/view_users.php');
+        return true;
+    }
+
+    public function actionCreateUserByAdmin() {
+        self::checkAdmin();
         $name = false;
         $email = false;
         $phone = false;
@@ -20,8 +30,8 @@ class UserController {
             $phone = $_POST['phone'];
             $password = $_POST['password'];
             $pwd_hashed = password_hash($password, PASSWORD_DEFAULT);
-
             $errors = false;
+
             if (!User::checkName($name)) {
                 $errors[] = 'Имя не должно быть короче 2-х символов';
             }
@@ -34,55 +44,57 @@ class UserController {
             if (User::checkEmailExists($email)) {
                 $errors[] = 'Такой email уже используется';
             }
-            if (!User::checkPhone($phone)) {
-                $errors[] = 'Телефон не должен быть короче 4-х символов';
-            }
             if ($errors == false) {
                 $result = User::createUser($name, $email, $phone, $pwd_hashed);
-                header("Location: /user/login");
+                header("Location: /admin/user/view");
             }
         }
-        require_once(ROOT . '/views/user/register.php');
+        require_once(ROOT . '/views/admin_user/create_user.php');
         return true;
     }
 
-    public function actionLogin() {
+    public function actionUpdateUserByAdmin($id) {
+
+        self::checkAdmin();
+
+        $user = User::getUserById($id);
+
+        $name = false;
         $email = false;
+        $phone = false;
         $password = false;
 
         if (isset($_POST['submit'])) {
+            $name = $_POST['name'];
             $email = $_POST['email'];
+            $phone = $_POST['phone'];
             $password = $_POST['password'];
-
+            $pwd_hashed = password_hash($password, PASSWORD_DEFAULT);
             $errors = false;
+
+            if (!User::checkName($name)) {
+                $errors[] = 'Имя не должно быть короче 2-х символов';
+            }
             if (!User::checkEmail($email)) {
                 $errors[] = 'Неправильный email';
             }
             if (!User::checkPassword($password)) {
                 $errors[] = 'Пароль не должен быть короче 6-ти символов';
             }
-            $userId = User::checkUserData($email, $password);
-            if ($userId == false) {
-                $errors[] = 'Неправильные данные для входа на сайт';
-            } else {
-                User::auth($userId);
-                if (User::getRole($userId) == 'admin') {
-                    header("Location: /admin/deposit/view");
-                } else {
-                    header("Location: /deposit/view");
-                }
+            if ($errors == false) {
+                $user = User::updateUserById($id, $name, $email, $phone, $pwd_hashed);
+                header("Location: /admin/user/view");
             }
         }
-        require_once(ROOT . '/views/user/login.php');
+
+        require_once(ROOT . '/views/admin_user/update_user.php');
         return true;
     }
 
-    public function actionLogout() {
-        if (session_id() == '') {
-            session_start();
-        }
-        unset($_SESSION["user"]);
-        header("Location: /user/login");
+    public function actionDeleteUserByAdmin($id) {
+        self::checkAdmin();
+        $user = User::deleteUserById($id);
+        header("Location: /admin/user/view");
     }
 
 }

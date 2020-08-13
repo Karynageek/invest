@@ -22,7 +22,7 @@ class DepositController {
             $userId = $_SESSION['user'];
             $errors = false;
             if (!Deposit::checkSum($sum)) {
-                $errors[] = 'Сумма депозита не может быть отрицательной и быть больше 12 символов';
+                $errors[] = 'Сумма депозита не может быть меньше $100 и быть больше 12 символов';
             }
             if ($errors == false) {
                 $result = Deposit::createDeposit($date_finish, $status, $interest_rate, $userId, $sum);
@@ -34,7 +34,7 @@ class DepositController {
         return true;
     }
 
-    public function actionViewDeposit() {
+    public function actionViewDepositByUserId() {
         $userId = $_SESSION['user'];
         $deposits = Deposit::getDepositsListByUsers($userId);
 

@@ -7,7 +7,6 @@
                     <?php if (isset($errors) && is_array($errors)): ?>
                         <div class="alert alert-danger" role="alert">
                             <?php foreach ($errors as $error): ?>
-
                                 <ul>
                                     <li><?php echo $error; ?></li>
                                 </ul>
@@ -15,7 +14,8 @@
                         </div>
                     <?php endif; ?>
                     <form action="#" method="post" class="form-signin">
-                        <h1 class="h3 mb-3 font-weight-normal text-center">Edit user# <?php echo $user['id']; ?></h1>
+                        <h1 class="h3 mb-3 font-weight-normal text-center">
+                            Edit user# <?php echo $user['id']; ?></h1>
                         <h5>Name:</h5>
                         <input type="text" name="name" id="inputName" 
                                class="form-control mb-2" required=""
@@ -36,22 +36,16 @@
                                class="form-control mb-2" required=""
                                value="<?php echo $user['phone']; ?>">
 
-                        <h5>Balance:</h5>
-                        <input type="text" name="balance" id="inputBalance" 
-                               class="form-control mb-2" required=""
-                               value="<?php echo $user['balance']; ?>">
-
                         <div class="row justify-content-center">
-                            <input type="submit" name="submit" value="Update" class="btn btn-primary col-6 mb-2"/></div>
+                            <input type="submit" name="submit" value="Update" 
+                                   class="btn btn-primary col-6 mb-2"/></div>
                     </form>
                     <div class="text-center">
                         <a href="/admin/user/view">Go back</a>
                     </div>
-
                 </div>
             </div>
         </div>
     </div>
 </div>
-<?php
-include ROOT . '/views/blocks/footer_admin.php';
+<?php include ROOT . '/views/blocks/footer_admin.php';

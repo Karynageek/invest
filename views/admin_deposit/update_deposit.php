@@ -1,5 +1,4 @@
 <?php include ROOT . '/views/blocks/header_admin.php'; ?>
-
 <section>
     <div class="container">
         <div class="row">
@@ -12,7 +11,6 @@
                 <?php if (isset($errors) && is_array($errors)): ?>
                     <div class="alert alert-danger" role="alert">
                         <?php foreach ($errors as $error): ?>
-
                             <ul>
                                 <li><?php echo $error; ?></li>
                             </ul>
@@ -42,20 +40,12 @@
                         <option value="1" <?php if ($deposit['status'] == 1) echo ' selected="selected"'; ?>>Open</option>
                         <option value="0" <?php if ($deposit['status'] == 0) echo ' selected="selected"'; ?>>Close</option>
                     </select>
-
                     <br/><br/>
-
                     <input type="submit" name="submit" class="btn btn-primary" value="Save">
-
                     <br/><br/>
-
                 </form>
             </div>
         </div>
-
     </div>
-
 </section>
-
-<?php
-include ROOT . '/views/blocks/footer_admin.php';
+<?php include ROOT . '/views/blocks/footer_admin.php';

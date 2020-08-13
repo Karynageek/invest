@@ -1,5 +1,4 @@
 <?php include ROOT . '/views/blocks/header_admin.php'; ?>
-
 <section>
     <div class="container">
         <div class="row">
@@ -17,7 +16,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php foreach ($deposits as $depositItem): ?>
+                            <?php foreach ($depositsAll as $depositItem): ?>
                                 <tr>
                                     <td><p class="card-title"><?php echo $depositItem['id']; ?></p></td>
                                     <td><p class="card-title"><?php echo $depositItem['date_start']; ?></p></td>
@@ -34,4 +33,4 @@
                 </div>
             </div>
         </div>
-    <?php include ROOT . '/views/blocks/footer_admin.php'; ?>
+    <?php include ROOT . '/views/blocks/footer_admin.php';
